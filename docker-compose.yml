@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        - DEV=true
+    container_name: app
+    image: docker.apple.com/gns-dc-sre/python:3.10-alpine3.14
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./app:/app
+    environment:
+      - ROOT_USERNAME=root
+      - ROOT_PASSWORD=pass123
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
