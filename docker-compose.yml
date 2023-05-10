@@ -7,7 +7,6 @@ services:
       args:
         - DEV=true
     container_name: app
-    image: docker.apple.com/gns-dc-sre/python:3.10-alpine3.14
     restart: always
     ports:
       - 8000:8000
