@@ -3,7 +3,7 @@ Sample Tests
 """
 
 from django.test import SimpleTestCase
-from calc import add, subtract
+from .calc import add, subtract
 
 
 class CalcTests(SimpleTestCase):
