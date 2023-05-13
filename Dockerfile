@@ -1,4 +1,4 @@
-FROM docker.apple.com/gns-dc-sre/python:3.10-alpine3.14
+FROM python:3.9-alpine3.14
 LABEL maintainer="future.logic@yahoo.com"
 
 ENV PYTHONUNBUFFERED 1
@@ -16,7 +16,10 @@ RUN python -m venv /py && \
         then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
     rm -rf /tmp && \
-    adduser -DH django-user netops
+    adduser \
+        --disabled-password \
+        --no-create-home \
+        django-user
 
 ENV PATH="/py/bin:$PATH"
 
