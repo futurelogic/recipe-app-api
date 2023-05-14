@@ -31,7 +31,7 @@ class AdminSiteTests(TestCase):
         """
         Test that users are listed on admin page
         """
-        url = reverse("admin:")
+        url = reverse("admin:core_user_changelist")
         result = self.client.get(url)
         self.assertContains(result, self.user.name)
         self.assertContains(result, self.user.email)
