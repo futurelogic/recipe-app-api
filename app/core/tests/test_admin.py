@@ -12,6 +12,7 @@ class AdminSiteTests(TestCase):
     """
     Tests for django admin
     """
+
     def setUp(self):
         """
         Create user and client
@@ -23,16 +24,14 @@ class AdminSiteTests(TestCase):
         )
         self.client.force_login(self.admin_user)
         self.user = get_user_model().objects.create_user(
-            email="user@example.com",
-            password="testpass123",
-            name='Test User'
+            email="user@example.com", password="testpass123", name="Test User"
         )
 
     def test_users_list(self):
         """
         Test that users are listed on admin page
         """
-        url = reverse('admin:core_user_changelist')
+        url = reverse("admin:core_user_changelist")
         result = self.client.get(url)
         self.assertContains(result, self.user.name)
         self.assertContains(result, self.user.email)
@@ -41,7 +40,7 @@ class AdminSiteTests(TestCase):
         """
         Test the edit user page works
         """
-        url = reverse('admin:core_user_change', args=[self.user.id])
+        url = reverse("admin:core_user_change", args=[self.user.id])
         result = self.client.get(url)
         self.assertEquals(result.status_code, 200)
 
@@ -49,6 +48,6 @@ class AdminSiteTests(TestCase):
         """
         Test the create user page works
         """
-        url = reverse('admin:core_user_add')
+        url = reverse("admin:core_user_add")
         result = self.client.get(url)
         self.assertEquals(result.status_code, 200)
